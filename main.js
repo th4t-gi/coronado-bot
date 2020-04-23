@@ -1,9 +1,11 @@
 const Discord = require("discord.js");
 const client = new Discord.Client()
-const TOKEN = require('./token.json').token
 
 client.on('ready', () => {
     console.log("Connected as " + client.user.tag)
+    if (process.platform == "darwin") {
+        client.user.setPresence({ activity: { name: 'with the code' }, status: 'playing' })
+    }
 })
 
 client.on("message", (m) => {
@@ -11,6 +13,9 @@ client.on("message", (m) => {
 
     if (m.content.includes('bot!')) {
         m.channel.send("What do you want???")
+    }
+    if (m.content.includes('go away')) {
+        m.channel.send('O, okay then... :sob:')
     }
     if (m.content.startsWith("!")) {
         processCommand(m)
@@ -22,7 +27,11 @@ const processCommand = (message) => {
     console.log(m);
 }
 
-client.login(TOKEN).catch(e => {
+if (process.platform == "darwin") {
+    process.env.TOKEN = require('./token.json').token
+}
+
+client.login(process.env.TOKEN).catch(e => {
     console.log(e);
 })
 // setTimeout(() => {
