@@ -1,5 +1,5 @@
+console.log('hiieeee');
 const Discord = require("discord.js");
-const token = require('./token.json')
 
 const client = new Discord.Client()
 
@@ -23,8 +23,15 @@ const processCommand = (message) => {
     const m = message.split(' ')[0]
     console.log(m);
 }
-client.login(token.token)
 
+console.log("ENV:", process.env);
+if (process.platform == "linux") {
+    client.login(process.env.TOKEN)
+}
+// else if (process.platform == "darwin") {
+//     const token = require('./token.json')
+//     client.login(token.token)
+// }
 // setTimeout(() => {
 //     process.exit()
 // }, 6000);
