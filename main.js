@@ -1,7 +1,9 @@
-console.log('hiieeee');
 const Discord = require("discord.js");
-
 const client = new Discord.Client()
+
+if (process.platform == "darwin") {
+    process.env.TOKEN = require('./token.json').token
+}
 
 client.on('ready', () => {
     console.log("Connected as " + client.user.tag)
@@ -24,14 +26,9 @@ const processCommand = (message) => {
     console.log(m);
 }
 
-console.log("ENV:", process.env);
-if (process.platform == "linux") {
-    client.login(process.env.TOKEN)
-}
-// else if (process.platform == "darwin") {
-//     const token = require('./token.json')
-//     client.login(token.token)
-// }
+client.login(process.env.TOKEN).catch(e => {
+    console.log(e);
+})
 // setTimeout(() => {
 //     process.exit()
 // }, 6000);
