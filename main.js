@@ -1,10 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client()
-
-var port = process.env.PORT || 1337;
-if (process.platform == "darwin") {
-    process.env.TOKEN = require('./token.json').token
-}
+const TOKEN = require('./token.json').token
 
 client.on('ready', () => {
     console.log("Connected as " + client.user.tag)
@@ -26,7 +22,7 @@ const processCommand = (message) => {
     console.log(m);
 }
 
-client.login(process.env.TOKEN).catch(e => {
+client.login(TOKEN).catch(e => {
     console.log(e);
 })
 // setTimeout(() => {
