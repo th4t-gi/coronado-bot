@@ -1,2 +1,3 @@
-# coronado-bot
-A discord bot for the Coronado Discord
+# Coronado Bot
+
+A Discord bot for the (unoffical) Coronado Discord server
