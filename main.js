@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const client = new Discord.Client()
 
+var port = process.env.PORT || 1337;
 if (process.platform == "darwin") {
     process.env.TOKEN = require('./token.json').token
 }
@@ -10,7 +11,6 @@ client.on('ready', () => {
 })
 
 client.on("message", (m) => {
-    console.log(m.content);
     if (m.author == client.user) return
 
     if (m.content.includes('bot!')) {
