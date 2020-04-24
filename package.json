@@ -7,8 +7,9 @@
     "url": "https://github.com/th4t-gi/coronado-bot"
   },
   "scripts": {
-    "start": "node ./main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "main": "npm run compile && npm start",
+    "compile": "tsc ./src/index.ts --outDir ./build",
+    "start": "node build/index.js"
   },
   "keywords": [
     "discord",
@@ -17,6 +18,7 @@
   "author": "Judd Brau",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^13.13.2",
     "discord.js": "^12.2.0"
   }
 }
